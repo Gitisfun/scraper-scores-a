@@ -1,13 +1,13 @@
 import axios from "axios";
 import cheerio from "cheerio";
-import { SCHEDULE_URL } from "../logic/constants/urls.js";
+import { config } from "../logic/constants/config.js";
 import { convertToEnglishDate } from "../logic/date.js";
 import { withoutDay } from "../logic/index.js";
 import { Game } from "../models/game.js";
 
 export const fetchGamesAndDates = async () => {
   try {
-    const response = await axios.get(SCHEDULE_URL);
+    const response = await axios.get(config.URLS.SCHEDULE_URL);
     if (response) {
       const $ = cheerio.load(response.data);
 
@@ -43,14 +43,7 @@ export const fetchGamesAndDates = async () => {
             const homeTeam = $(columns[2]).text();
             const score = $(columns[3]).text();
             const awayTeam = $(columns[4]).text();
-            const game = new Game(
-              time,
-              homeTeam,
-              score,
-              awayTeam,
-              tempDate,
-              currentLeague
-            );
+            const game = new Game(time, homeTeam, score, awayTeam, tempDate, currentLeague);
             games.push(game);
           }
         }

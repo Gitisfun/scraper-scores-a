@@ -1,9 +1,9 @@
-import { LEAGUES_ORDER } from "./constants/league.js";
+import { config } from "./constants/config.js";
 
 export const orderLeagues = (list) => {
   for (const league of list) {
-    for (let i = 0; i < LEAGUES_ORDER.length; i++) {
-      if (league.name === LEAGUES_ORDER[i]) {
+    for (let i = 0; i < config.LEAGUES_ORDER.length; i++) {
+      if (league.name === config.LEAGUES_ORDER[i]) {
         league.order = i;
       }
     }

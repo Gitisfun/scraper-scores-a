@@ -1,14 +1,14 @@
 import axios from "axios";
 import cheerio from "cheerio";
-import { SCORES_URL } from "../logic/constants/urls.js";
+import { config } from "../logic/constants/config.js";
 import { formatDateToString, formatToCorrectDate } from "../logic/date.js";
-import { cleanScoreRoundTitle, reverseText, withoutJibberish } from "../logic/index.js";
+import { cleanScoreRoundTitle, withoutJibberish } from "../logic/index.js";
 import { exists } from "../logic/scraper.js";
 import { Game } from "../models/game.js";
 
 export const fetchScores = async () => {
   try {
-    const response = await axios.get(SCORES_URL);
+    const response = await axios.get(config.URLS.SCORES_URL);
     if (response) {
       const $ = cheerio.load(response.data);
 

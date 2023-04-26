@@ -1,4 +1,5 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
+import { config } from "../logic/constants/config.js";
 
 const connectionString = "mongodb+srv://pinguin:kSoYYijnEfyEnDU0@cluster0.xotatp5.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(connectionString, {
@@ -17,7 +18,7 @@ export default {
         return callback(err);
       }
 
-      dbConnection = db.db("scores");
+      dbConnection = db.db(config.DATABASE_NAME);
       console.log("Successfully connected to MongoDB...");
 
       return callback();
