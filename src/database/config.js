@@ -1,7 +1,6 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const connectionString =
-  "mongodb+srv://pinguin:kSoYYijnEfyEnDU0@cluster0.xotatp5.mongodb.net/?retryWrites=true&w=majority";
+const connectionString = "mongodb+srv://pinguin:kSoYYijnEfyEnDU0@cluster0.xotatp5.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
