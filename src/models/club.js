@@ -21,10 +21,13 @@ export class Club {
   setAddress(address) {
     const withoutTerrein = removeSubstring(address, "Terrein:");
     const list = withoutTerrein.split(" - ");
-    if (list.length >= 3) {
-      this.stadium = list[0];
+
+    if (list.length === 3) {
       this.street = list[1];
       this.county = removeSubstring(list[2], "-");
+    } else if (list.length >= 4) {
+      this.street = list[2];
+      this.county = removeSubstring(list[3], "-");
     }
   }
 

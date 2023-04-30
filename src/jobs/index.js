@@ -1,8 +1,10 @@
 import { fetchClubs } from "../api/clubs.js";
+import { scrapeColors, UNIQUE_COLOR_LIST } from "../api/colors.js";
 import { fetchGamesAndDates } from "../api/games.js";
 import { fetchRankings } from "../api/rankings.js";
 import { fetchScores } from "../api/scores.js";
 import { createClubs, deleteAllFromClubs } from "../database/collections/clubs.js";
+import { createColors, deleteAllFromColors } from "../database/collections/colors.js";
 import { createDates, deleteAllFromDates } from "../database/collections/dates.js";
 import { createGames, deleteAllFromGames } from "../database/collections/games.js";
 import { createRankings, deleteAllFromRankings } from "../database/collections/rankings.js";
@@ -90,8 +92,23 @@ export const scrapeFromClubsPage = async () => {
   }
 };
 
+const saveColorsToDatabase = async () => {
+  try {
+    const deletedResult = await deleteAllFromColors();
+    const insertedResult = await createColors(UNIQUE_COLOR_LIST);
+
+    if (!deletedResult.acknowledged) throw new Error("Failed to delete records");
+    if (!insertedResult.acknowledged) throw new Error("Failed to insert records");
+
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
+
 export const loadInitialData = async () => {
   await scrapeFromClubsPage();
+  // await saveColorsToDatabase();
   await scrapeAllGames();
   await scrapeFromRankingPage();
 };

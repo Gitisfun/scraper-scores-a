@@ -11,6 +11,7 @@ class Colors {
   static SALMON = "#FA8072";
   static TURQUOISE = "#40E0D0";
   static BORDEAUX = "#4C0013";
+  static GOLD = "#FFD700";
 
   static LIGHT_BLUE = "#ADD8E6";
 

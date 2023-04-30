@@ -7,23 +7,9 @@ import { Club } from "../models/club.js";
 
 const ROW_COLORS = "Kleuren";
 const ROW_ADDRESS = "Terrein";
+const ROW_DIRECTIONS = "Wegwijzer";
 const ROW_REMARK = "Opmerking";
 const ROW_ARTIFICIAL = "OPGELET KUNSTGRAS";
-
-const SINGLE = "Enkelvoudig";
-const MULTI = "Meerdere";
-const STRIPED = "Gestreept";
-
-const getKitStyle = (text) => {
-  if (text.includes("strep") || text.includes("streep")) return STRIPED;
-  else if (
-    text.trim().includes("-") ||
-    text.trim().includes(" ") ||
-    text.trim().includes("/")
-  )
-    return MULTI;
-  return SINGLE;
-};
 
 export const fetchClubs = async () => {
   try {
@@ -32,72 +18,41 @@ export const fetchClubs = async () => {
     const file = fs.readFileSync(`${__dirname}/clubs.html`);
     const $ = cheerio.load(file);
 
-    const content = $(".table-responsive");
-    const rows = $(content).children();
+    const evenRows = $(".row-even");
 
-    let isPastFirstRow = false;
     const list = [];
+    // Loop through even rows and extract club names and details
+    evenRows.each((i, row) => {
+      const club = new Club();
 
-    let club = new Club();
-    for (const row of rows) {
-      const value = $(row).text();
+      const clubName = $(row).find(".col-md-3").text().trim();
+      club.setName(clubName);
 
-      if ($(row).hasClass("row-even")) {
-        if (isPastFirstRow) {
-          list.push(club);
-          club = new Club();
+      const details = $(row).next(".row");
+
+      details.find(".row").each(function () {
+        const text = $(this).text().trim();
+
+        if (text.includes(ROW_COLORS)) {
+          // club.colors = $(row).text();
+          club.setColors(text);
         }
 
-        isPastFirstRow = true;
+        if (text.includes(ROW_ADDRESS) && !text.includes(ROW_DIRECTIONS)) {
+          club.setAddress(text);
+        }
 
-        const columns = $(row).children();
-        club.setName($(columns[1]).text());
-      }
+        if (text.includes(ROW_REMARK)) {
+          const temp = removeSubstring(text, "Opmerking:");
+          club.setRemark(temp);
+        }
 
-      if ($(row).text().includes(ROW_COLORS)) {
-        // club.colors = $(row).text();
-        club.setColors(value);
-      }
-
-      if (value.includes(ROW_ADDRESS)) {
-        // club.address = $(row).text();
-        club.setAddress(value);
-      }
-
-      if (value.includes(ROW_REMARK)) {
-        const temp = removeSubstring(value, "Opmerking:");
-        club.setRemark(temp);
-      }
-
-      if (value.includes(ROW_ARTIFICIAL)) {
-        club.setArtificial(value);
-      }
-    }
-    list.push(club);
-
-    const colorList = [];
-    const uniqueColorList = [];
-
-    for (let i = 0; i < list.length; i++) {
-      const a = list[i].shirtColor.replace("trui:", "").trim();
-      const b = list[i].pantsColor.replace("broek:", "").trim();
-      if (!uniqueColorList.includes(a)) {
-        const temp = {
-          code: a,
-          kit: getKitStyle(a),
-        };
-        colorList.push(temp);
-        uniqueColorList.push(a);
-      }
-      if (!uniqueColorList.includes(b)) {
-        const temp = {
-          code: b,
-          kit: getKitStyle(b),
-        };
-        colorList.push(temp);
-        uniqueColorList.push(b);
-      }
-    }
+        if (text.includes(ROW_ARTIFICIAL)) {
+          club.setArtificial(text);
+        }
+      });
+      list.push(club);
+    });
 
     return list;
   } catch (err) {
