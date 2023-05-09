@@ -37,12 +37,14 @@ router.get("/round", async (req, res, next) => {
 
 router.get("/league", async (req, res, next) => {
   const league = req.query.league;
-
+  console.log(league);
   if (league) {
     const result = await getGames({ league });
     const list = buildLeague(result);
+    console.log(list);
     res.send(list);
   } else {
+    console.log("Empty list");
     res.send([]);
   }
 });

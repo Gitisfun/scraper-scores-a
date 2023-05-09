@@ -99,6 +99,7 @@ export const UNIQUE_COLOR_LIST = [
   { code: "groen-wit", kit: Kit.STRIPED, colors: [Colors.GREEN, Colors.WHITE] },
   { code: "groen/wit", kit: Kit.MULTIPLE, colors: [Colors.GREEN, Colors.WHITE] },
   { code: "bordeaux", kit: Kit.SINGLE, colors: [Colors.BORDEAUX] },
+  { code: "bordeau", kit: Kit.SINGLE, colors: [Colors.BORDEAUX] },
   { code: "licht blauw", kit: Kit.SINGLE, colors: [Colors.LIGHT_BLUE] },
   { code: "blauwe", kit: Kit.SINGLE, colors: [Colors.BLUE] },
   {

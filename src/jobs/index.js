@@ -108,7 +108,7 @@ const saveColorsToDatabase = async () => {
 
 export const loadInitialData = async () => {
   await scrapeFromClubsPage();
-  // await saveColorsToDatabase();
+  await saveColorsToDatabase();
   await scrapeAllGames();
   await scrapeFromRankingPage();
 };
