@@ -26,7 +26,10 @@ export const fetchClubs = async () => {
       const club = new Club();
 
       const clubName = $(row).find(".col-md-3").text().trim();
+      const league = $(row).find(".col-md-1").last().text().trim();
+
       club.setName(clubName);
+      club.setLeague(league);
 
       const details = $(row).next(".row");
 
@@ -34,7 +37,6 @@ export const fetchClubs = async () => {
         const text = $(this).text().trim();
 
         if (text.includes(ROW_COLORS)) {
-          // club.colors = $(row).text();
           club.setColors(text);
         }
 

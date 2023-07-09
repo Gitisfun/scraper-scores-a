@@ -1,4 +1,6 @@
+import slugify from "slugify";
 import { v4 as uuidv4 } from "uuid";
+import { LEAGUES_MAP } from "../logic/constants/league.js";
 import { removeSubstring } from "../logic/index.js";
 
 export class Club {
@@ -8,6 +10,16 @@ export class Club {
 
   setName(name) {
     this.name = name.trim();
+    this.slug = slugify(name.trim());
+  }
+
+  setLeague(league) {
+    this.league = league.trim();
+    this.setLeagueFullName(league);
+  }
+
+  setLeagueFullName(league) {
+    this.leagueFullName = LEAGUES_MAP(league.trim());
   }
 
   setColors(colors) {
