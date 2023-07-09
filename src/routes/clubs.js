@@ -29,7 +29,7 @@ router.get("/:slug", async (req, res, next) => {
 
       const ranking = await getRanking({ league: teamInfo?.leagueFullName });
 
-      res.send({ info: teamInfo, matches: matches, ranking });
+      res.send({ ...teamInfo, matches: matches, ranking });
     } else {
       throw new Error("No params");
     }
