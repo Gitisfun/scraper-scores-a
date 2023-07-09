@@ -16,7 +16,7 @@ class Colors {
   static LIGHT_BLUE = "#ADD8E6";
 
   static DARK_ORANGE = "#FF8C00";
-  static DARK_BLUE = "#0008B";
+  static DARK_BLUE = "#00008B";
   static DARK_GREY = "#A9A9A9";
   static DARK_GREEN = "#006400";
 
