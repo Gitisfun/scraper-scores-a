@@ -1,10 +1,6 @@
 import express from "express";
 import { UNIQUE_COLOR_LIST } from "../api/colors.js";
-import {
-  createColors,
-  deleteAllFromColors,
-  getAllColors,
-} from "../database/collections/colors.js";
+import { createColors, deleteAllFromColors, getAllColors } from "../database/collections/colors.js";
 
 const router = express.Router();
 

@@ -15,7 +15,7 @@ export class Club {
     const list = withoutKleuren.split(" - ");
     this.shirtColor = removeSubstring(list[0].toLowerCase(), "trui:");
     this.pantsColor = removeSubstring(list[1].toLowerCase(), "broek:");
-    this.colors = list;
+    //this.colors = list;
   }
 
   setAddress(address) {
