@@ -3,6 +3,7 @@ import { UNIQUE_COLOR_LIST } from "../api/colors.js";
 import { getAllClubs, getClub } from "../database/collections/clubs.js";
 import { getAllColors } from "../database/collections/colors.js";
 import { getAllGamesFromClub } from "../database/collections/games.js";
+import { getRanking } from "../database/collections/rankings.js";
 import Colors from "../logic/colors.js";
 
 const router = express.Router();
@@ -34,6 +35,7 @@ router.get("/:slug", async (req, res, next) => {
       throw new Error("No params");
     }
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
