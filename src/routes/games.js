@@ -31,7 +31,6 @@ router.get("/round", async (req, res, next) => {
       res.send({ leagues: list });
     }
   } catch (err) {
-    console.log(err);
     next(err);
   }
 });
