@@ -24,13 +24,14 @@ router.get("/round", async (req, res, next) => {
       const dates = await getAllDates();
       const convertedDates = convertToDateList(dates);
       const index = findClosestDateIndex(convertedDates);
-      const closestDate = dates[index].round;
+      const closestDate = dates[index]?.round;
 
       const result = await getGames({ date: closestDate });
       const list = buildRound(result);
       res.send({ leagues: list });
     }
   } catch (err) {
+    console.log(err);
     next(err);
   }
 });
