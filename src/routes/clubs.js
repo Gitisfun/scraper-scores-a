@@ -17,6 +17,42 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/match", async (req, res, next) => {
+  try {
+    const home = req.query.home;
+    const away = req.query.away;
+
+    if (home && away) {
+      const homeTeam = await getClub({ name: { $regex: home, $options: "i" } });
+      const awayTeam = await getClub({ name: { $regex: away, $options: "i" } });
+
+      const homeTeamMatches = await getAllGamesFromClub({
+        $or: [{ homeTeam: home }, { awayTeam: home }],
+      });
+      const awayTeamMatches = await getAllGamesFromClub({
+        $or: [{ homeTeam: away }, { awayTeam: away }],
+      });
+
+      const colors = UNIQUE_COLOR_LIST;
+
+      homeTeam.kit = {
+        shirt: Colors.getColors(colors, homeTeam.shirtColor),
+        pants: Colors.getColors(colors, homeTeam.pantsColor),
+      };
+      awayTeam.kit = {
+        shirt: Colors.getColors(colors, awayTeam.shirtColor),
+        pants: Colors.getColors(colors, awayTeam.pantsColor),
+      };
+
+      res.send({ homeTeam, awayTeam, homeTeamMatches, awayTeamMatches });
+    } else {
+      throw new Error("No params");
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/:slug", async (req, res, next) => {
   try {
     const slug = req.params.slug;
@@ -40,51 +76,6 @@ router.get("/:slug", async (req, res, next) => {
   }
 });
 
-router.get("/match", async (req, res, next) => {
-  try {
-    const home = req.query.home;
-    const away = req.query.away;
 
-    if (home && away) {
-      const homeTeam = await getClub({ name: home });
-      const awayTeam = await getClub({ name: away });
-
-      const homeTeamMatches = await getAllGamesFromClub({
-        $or: [{ homeTeam: home }, { awayTeam: home }],
-      });
-      const awayTeamMatches = await getAllGamesFromClub({
-        $or: [{ homeTeam: away }, { awayTeam: away }],
-      });
-
-      //const colors = await getAllColors();
-      const colors = UNIQUE_COLOR_LIST;
-      console.log(colors);
-      console.log("COLORS");
-      console.log(homeTeam.shirtColor);
-      console.log(homeTeam.pantsColor);
-      console.log(awayTeam.shirtColor);
-      console.log(awayTeam.pantsColor);
-      homeTeam.kit = {
-        shirt: Colors.getColors(colors, homeTeam.shirtColor),
-        pants: Colors.getColors(colors, homeTeam.pantsColor),
-      };
-      awayTeam.kit = {
-        shirt: Colors.getColors(colors, awayTeam.shirtColor),
-        pants: Colors.getColors(colors, awayTeam.pantsColor),
-      };
-
-      console.log("homeTeam.kit");
-      console.log(homeTeam.kit);
-      console.log("awayTeam.kit");
-      console.log(awayTeam.kit);
-
-      res.send({ homeTeam, awayTeam, homeTeamMatches, awayTeamMatches });
-    } else {
-      throw new Error("No params");
-    }
-  } catch (err) {
-    next(err);
-  }
-});
 
 export default router;
