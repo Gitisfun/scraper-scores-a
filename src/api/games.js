@@ -20,31 +20,33 @@ export const fetchGamesAndDates = async () => {
       let games = [];
 
       for (const child of content.children()) {
-        const text = $(child).text();
+       
+       if (child.name === "table") {
+         const table = $(child);
+         
+         const rows = $(table).find("tr");
+         
+         for (let j = 0; j < rows.length; j++) {
+           const row = rows[j];
+           const text = $(row).text(); 
 
-        if (child.name === "center") {
-          if (text.includes("dag")) {
-            tempDate = withoutDay(convertToEnglishDate(text));
-            dates.push({ round: tempDate });
-          } else if (text.includes("AFDELING")) {
-            currentLeague = text;
-          }
-        }
-        if (child.name === "table") {
-          const table = $(child);
+            if (text.includes("dag")) {
+              tempDate = withoutDay(convertToEnglishDate(text));
+              dates.push({ round: tempDate });
+            } else if (text.includes("AFDELING")) {
+              currentLeague = text;
+            }
+            else{
+              const columns = $(row).find("td");
+  
+              const time = $(columns[0]).text();
+              const homeTeam = $(columns[2]).text();
+              const score = $(columns[3]).text();
+              const awayTeam = $(columns[4]).text();
+              const game = new Game(time, homeTeam, score, awayTeam, tempDate, currentLeague);
+              games.push(game);
+            }
 
-          const rows = $(table).find("tr");
-
-          for (let j = 0; j < rows.length; j++) {
-            const row = rows[j];
-            const columns = $(row).find("td");
-
-            const time = $(columns[0]).text();
-            const homeTeam = $(columns[2]).text();
-            const score = $(columns[3]).text();
-            const awayTeam = $(columns[4]).text();
-            const game = new Game(time, homeTeam, score, awayTeam, tempDate, currentLeague);
-            games.push(game);
           }
         }
       }
