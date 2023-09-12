@@ -13,12 +13,16 @@ class Colors {
   static BORDEAUX = "#4C0013";
   static GOLD = "#FFD700";
 
+  static FLUO_BLUE = "#15f4ee"
+
   static LIGHT_BLUE = "#ADD8E6";
+  static LIGHT_GREEN = "#90EE90"
 
   static DARK_ORANGE = "#FF8C00";
   static DARK_BLUE = "#00008B";
   static DARK_GREY = "#A9A9A9";
   static DARK_GREEN = "#006400";
+  static DARK_RED = "#c23616";
 
   static getColors(list, code) {
     for (const color of list) {

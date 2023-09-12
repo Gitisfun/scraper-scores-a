@@ -167,4 +167,144 @@ export const UNIQUE_COLOR_LIST = [
     colors: [Colors.BORDEAUX, Colors.DARK_BLUE],
   },
   { code: "donker blauw", kit: Kit.MULTIPLE, colors: [Colors.DARK_BLUE] },
+  {
+    code: "donker blauw met geel",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.DARK_BLUE, Colors.YELLOW]
+},
+{
+    code: "donker groen",
+    kit: Kit.SINGLE,
+    colors: [Colors.DARK_GREEN]
+},
+{
+    code: "groen-wit getreept",
+    kit: Kit.STRIPED,
+    colors: [Colors.GREEN, Colors.WHITE]
+},
+{
+    code: "wit/zwart",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.WHITE, Colors.BLACK]
+},
+{
+    code: "zwart/donker groen",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.BLACK, Colors.DARK_GREEN]
+},
+{
+    code: "zwart/wit",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.BLACK, Colors.WHITE]
+},
+{
+    code: "blauw/wit gestreept",
+    kit: Kit.STRIPED,
+    colors: [Colors.BLUE, Colors.WHITE]
+},
+{
+    code: "donkerblauw met lichter getinte dwarsstrepen",
+    kit: Kit.STRIPED,
+    colors: [Colors.DARK_BLUE, Colors.LIGHT_BLUE]
+},
+{
+    code: "gele trui",
+    kit: Kit.SINGLE,
+    colors: [Colors.YELLOW]
+},
+{
+    code: "zwarte broek",
+    kit: Kit.SINGLE,
+    colors: [Colors.BLACK]
+},
+{
+    code: "fluo blauw",
+    kit: Kit.SINGLE,
+    colors: [Colors.FLUO_BLUE]
+},
+{
+    code: "donkerrood",
+    kit: Kit.SINGLE,
+    colors: [Colors.DARK_RED]
+},
+{
+    code: "groen met gele accenten",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.GREEN, Colors.YELLOW]
+},
+{
+    code: "zwart/geel",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.BLACK, Colors.YELLOW]
+},
+{
+    code: "rode trui",
+    kit: Kit.SINGLE,
+    colors: [Colors.RED]
+},
+{
+    code: "rode broek",
+    kit: Kit.SINGLE,
+    colors: [Colors.RED]
+},
+{
+    code: "bordeaux/blauw",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.BORDEAUX, Colors.BLUE]
+},
+{
+    code: "rood/geel",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.RED, Colors.YELLOW]
+},
+{
+    code: "bordeaux-blauw gestreept",
+    kit: Kit.STRIPED,
+    colors: [Colors.BORDEAUX, Colors.BLUE]
+},
+{
+    code: "geel met paarse nr en logo",
+    kit: Kit.SINGLE,
+    colors: [Colors.YELLOW]
+},
+{
+    code: "geel met paars",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.YELLOW, Colors.PURPLE]
+},
+{
+    code: "paars met gele nr en logo",
+    kit: Kit.SINGLE,
+    colors: [Colors.PURPLE]
+},
+{
+    code: "paars met geel",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.PURPLE, Colors.YELLOW]
+},
+{
+    code: "groen wit",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.GREEN, Colors.WHITE]
+},
+{
+    code: "blauw rood",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.BLUE, Colors.RED]
+},
+{
+    code: "blauw-wit",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.BLUE, Colors.WHITE]
+},
+{
+    code: "bordeaux met oranje schouders",
+    kit: Kit.MULTIPLE,
+    colors: [Colors.BORDEAUX, Colors.ORANGE]
+},
+{
+    code: "lichtgroen",
+    kit: Kit.SINGLE,
+    colors: [Colors.LIGHT_GREEN]
+}
 ];
