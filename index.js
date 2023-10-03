@@ -50,7 +50,7 @@ dbo.connectToServer(() => {
   refreshData();
   const createdTime = new Date();
   console.log(`Created on ${createdTime.toLocaleTimeString()}`);
-  cron.schedule("0 17,18,19,23 * * SAT", () => {
+  cron.schedule("0,15,30,45 14,15,16,17,18,19,23 * * SAT", () => {
     const updatedTime = new Date();
     refreshData();
     console.log(`Updated on ${updatedTime.toLocaleTimeString()}`);
