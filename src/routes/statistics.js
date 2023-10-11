@@ -9,6 +9,14 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const obj = await getVisited();
+    res.send(obj);
+  } catch (err) {
+    next(err);
+  }
+});
+router.get("/increment", async (req, res, next) => {
+  try {
+    const obj = await getVisited();
     const incrementedValue = obj.visited + 1;
     const result = await incrementVisited(obj._id, incrementedValue);
     res.send(result);
